@@ -121,7 +121,7 @@ export default function Navbar() {
     >
       <nav
         className={cn(
-          "flex items-center justify-center rounded-full p-1 md:p-2 w-full max-w-sm md:max-w-2xl",
+          "flex items-center justify-center rounded-full p-1 md:p-2 w-full max-w-sm md:max-w-md",
           LIQUID_GLASS_CLASSES
         )}
       >
