@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { onSnapshot, Query, DocumentData, QuerySnapshot } from 'firebase/firestore';
 
 export function useCollection(query: Query | null) {
@@ -7,12 +7,9 @@ export function useCollection(query: Query | null) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  // Memoize the query to prevent re-renders from creating new query objects
-  const memoizedQuery = useMemo(() => query, [query]);
-
   useEffect(() => {
-    if (!memoizedQuery) {
-      setData(null);
+    if (!query) {
+      setData([]);
       setLoading(false);
       return;
     }
@@ -20,7 +17,7 @@ export function useCollection(query: Query | null) {
     setLoading(true);
 
     const unsubscribe = onSnapshot(
-      memoizedQuery,
+      query,
       (querySnapshot: QuerySnapshot) => {
         const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setData(docs);
@@ -35,7 +32,7 @@ export function useCollection(query: Query | null) {
 
     // Unsubscribe from the listener when the component unmounts or the query changes
     return () => unsubscribe();
-  }, [memoizedQuery]);
+  }, [query]);
 
   return { data, loading, error };
 }

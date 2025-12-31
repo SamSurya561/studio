@@ -1,7 +1,11 @@
+'use client';
 import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
 import { firebaseConfig } from './config';
+import { FirebaseProvider, useFirebaseApp, useAuth, useFirestore } from './provider';
+import { FirebaseClientProvider } from './client-provider';
+import { useCollection } from './firestore/use-collection';
 
 // Provides a properly initialized Firebase app instance
 function initializeFirebase(): { app: FirebaseApp; auth: Auth; firestore: Firestore } {
@@ -13,6 +17,12 @@ function initializeFirebase(): { app: FirebaseApp; auth: Auth; firestore: Firest
   return { app, auth, firestore };
 }
 
-export { initializeFirebase };
-export * from './provider';
-export * from './firestore/use-collection';
+export { 
+    initializeFirebase,
+    FirebaseProvider,
+    FirebaseClientProvider,
+    useFirebaseApp,
+    useAuth,
+    useFirestore,
+    useCollection,
+};
