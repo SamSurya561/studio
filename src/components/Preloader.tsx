@@ -78,7 +78,7 @@ const Preloader = () => {
       exit="exit"
       variants={containerVariants}
     >
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center w-full h-full">
         {icons.map((item, i) => {
           const Icon = item.icon;
           return (
@@ -98,7 +98,7 @@ const Preloader = () => {
         })}
 
         <motion.h1
-          className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter"
+          className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter relative z-10"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
