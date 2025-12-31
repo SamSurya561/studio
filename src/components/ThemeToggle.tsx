@@ -26,8 +26,8 @@ export default function ThemeToggle() {
         className={`${LIQUID_GLASS_CLASSES} rounded-full w-12 h-12 hover:bg-white/10 dark:hover:bg-black/20 transition-colors`}
         aria-label="Toggle theme"
       >
-        <Sun className="h-6 w-6 scale-100 dark:scale-0 transition-transform duration-300" />
-        <Moon className="absolute h-6 w-6 scale-0 dark:scale-100 transition-transform duration-300" />
+        <Sun className="h-6 w-6 scale-100 text-foreground dark:scale-0 transition-transform duration-300" />
+        <Moon className="absolute h-6 w-6 scale-0 text-foreground dark:scale-100 transition-transform duration-300" />
       </Button>
     </motion.div>
   )
