@@ -4,13 +4,7 @@
 import React from 'react';
 
 const FigmaIcon = (props) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M12 24C15.3137 24 18 21.3137 18 18V12H12V24Z" fill="#0ACF83"/>
-    <path d="M6 18C6 21.3137 8.68629 24 12 24V12H6V18Z" fill="#A259FF"/>
-    <path d="M6 12H12V6H6V12Z" fill="#F24E1E"/>
-    <path d="M12 6H18V12H12V6Z" fill="#FF7262"/>
-    <path d="M6 6C6 8.76142 8.23858 11 11 11C11.5523 11 12 11.4477 12 12C12 12.5523 11.5523 13 11 13C7.13401 13 4 9.86599 4 6C4 2.13401 7.13401 -1 11 -1C11.5523 -1 12 -0.552285 12 0C12 0.552285 11.5523 1 11 1C8.23858 1 6 3.23858 6 6Z" fill="#1ABCFE" transform="translate(0, 0)"/>
-  </svg>
+  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 346 512.36" {...props}><g fill-rule="nonzero"><path fill="#00B6FF" d="M172.53 246.9c0-42.04 34.09-76.11 76.12-76.11h11.01c.3.01.63-.01.94-.01 47.16 0 85.4 38.25 85.4 85.4 0 47.15-38.24 85.39-85.4 85.39-.31 0-.64-.01-.95-.01l-11 .01c-42.03 0-76.12-34.09-76.12-76.12V246.9z"/><path fill="#24CB71" d="M0 426.98c0-47.16 38.24-85.41 85.4-85.41l87.13.01v84.52c0 47.65-39.06 86.26-86.71 86.26C38.67 512.36 0 474.13 0 426.98z"/><path fill="#FF7237" d="M172.53.01v170.78h87.13c.3-.01.63.01.94.01 47.16 0 85.4-38.25 85.4-85.4C346 38.24 307.76 0 260.6 0c-.31 0-.64.01-.95.01h-87.12z"/><path fill="#FF3737" d="M0 85.39c0 47.16 38.24 85.4 85.4 85.4h87.13V.01H85.39C38.24.01 0 38.24 0 85.39z"/><path fill="#874FFF" d="M0 256.18c0 47.16 38.24 85.4 85.4 85.4h87.13V170.8H85.39C38.24 170.8 0 209.03 0 256.18z"/></g></svg>
 );
 
 const AdobeXDIcon = (props) => (
