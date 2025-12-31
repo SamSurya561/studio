@@ -5,12 +5,12 @@ import { PenTool, Palette, Brush, Baseline, Circle, Square } from 'lucide-react'
 import React from 'react';
 
 const icons = [
-  { icon: PenTool, position: { top: '20%', left: '15%' }, delay: 0.1 },
-  { icon: Palette, position: { top: '30%', left: '80%' }, delay: 0.2 },
-  { icon: Brush, position: { top: '70%', left: '10%' }, delay: 0.3 },
-  { icon: Baseline, position: { top: '80%', left: '85%' }, delay: 0.4 },
-  { icon: Circle, position: { top: '15%', left: '60%' }, delay: 0.5 },
-  { icon: Square, position: { top: '75%', left: '40%' }, delay: 0.6 },
+  { icon: PenTool, position: { top: '10%', left: '10%' }, delay: 0.1 },
+  { icon: Palette, position: { top: '20%', left: '85%' }, delay: 0.2 },
+  { icon: Brush, position: { top: '80%', left: '5%' }, delay: 0.3 },
+  { icon: Baseline, position: { top: '85%', left: '90%' }, delay: 0.4 },
+  { icon: Circle, position: { top: '15%', left: '50%' }, delay: 0.5 },
+  { icon: Square, position: { top: '65%', left: '60%' }, delay: 0.6 },
 ];
 
 const Preloader = () => {
