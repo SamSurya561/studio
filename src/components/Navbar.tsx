@@ -5,6 +5,7 @@ import {
   motion,
   useScroll,
   useMotionValueEvent,
+  useDragControls,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Home, User, Code, FolderKanban, Mail } from 'lucide-react';
@@ -25,7 +26,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const navRef = useRef<HTMLUListElement>(null);
-  const [indicatorStyle, setIndicatorStyle] = useState({});
+  const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0 });
+  const dragControls = useDragControls();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
@@ -52,6 +54,40 @@ export default function Navbar() {
     }
   }, [activeSection]);
   
+  function onDragEnd(event: any, info: any) {
+    if (!navRef.current) return;
+    const navBounds = navRef.current.getBoundingClientRect();
+    const indicatorWidth = indicatorStyle.width;
+    let finalPosition = info.point.x - navBounds.left - indicatorWidth / 2;
+    
+    // Find the closest link
+    let closestLink = null;
+    let minDistance = Infinity;
+
+    const linkElements = Array.from(navRef.current.querySelectorAll('li'));
+
+    for (let i = 0; i < linkElements.length; i++) {
+      const linkEl = linkElements[i];
+      const linkCenter = linkEl.offsetLeft + linkEl.offsetWidth / 2;
+      const distance = Math.abs(finalPosition + indicatorWidth/2 - linkCenter);
+      
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestLink = links[i];
+      }
+    }
+
+    if (closestLink) {
+      const targetElement = document.getElementById(closestLink.href.substring(1));
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
+
   return (
     <motion.header
       className="fixed top-4 left-0 right-0 z-40 flex justify-center"
@@ -67,14 +103,25 @@ export default function Navbar() {
       >
         <ul ref={navRef} className="relative flex items-center">
           <motion.div
-            className="absolute h-full rounded-full nav-indicator"
-            style={indicatorStyle}
-            transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+            className="absolute h-full rounded-full nav-indicator cursor-grab"
+            style={{...indicatorStyle}}
+            animate={{...indicatorStyle}}
+            transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+            drag="x"
+            dragControls={dragControls}
+            dragConstraints={navRef}
+            dragElastic={0.1}
+            onDragEnd={onDragEnd}
+            whileDrag={{ cursor: 'grabbing' }}
           />
           {links.map((link) => (
             <li key={link.href} data-section={link.href.substring(1)}>
               <Link
                 href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className={cn(
                   "relative z-10 flex flex-col items-center justify-center text-xs font-medium transition-colors w-16 h-12 rounded-full",
                   activeSection === link.href.substring(1) ? "text-foreground" : "text-foreground/60 hover:text-foreground"
