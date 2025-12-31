@@ -26,6 +26,26 @@ export function FirebaseProvider({
   return <FirebaseContext.Provider value={value}>{children}</FirebaseContext.Provider>;
 }
 
-export const useFirebaseApp = () => useContext(FirebaseContext)?.app;
-export const useAuth = () => useContext(FirebaseContext)?.auth;
-export const useFirestore = () => useContext(FirebaseContext)?.firestore;
+export const useFirebaseApp = () => {
+    const context = useContext(FirebaseContext);
+    if (!context) {
+        throw new Error("useFirebaseApp must be used within a FirebaseProvider");
+    }
+    return context.app;
+};
+
+export const useAuth = () => {
+    const context = useContext(FirebaseContext);
+    if (!context) {
+        throw new Error("useAuth must be used within a FirebaseProvider");
+    }
+    return context.auth;
+};
+
+export const useFirestore = () => {
+    const context = useContext(FirebaseContext);
+    if (!context) {
+        throw new Error("useFirestore must be used within a FirebaseProvider");
+    }
+    return context.firestore;
+};
