@@ -105,7 +105,7 @@ const Preloader = () => {
         >
           {name.split("").map((char, i) => (
             <motion.span key={i} variants={charVariants}>
-              {char === " " ? "\u00A0" : char}
+              {char === " " ? " " : char}
             </motion.span>
           ))}
         </motion.h1>
