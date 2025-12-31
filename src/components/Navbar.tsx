@@ -10,6 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Home, User, Code, FolderKanban, Mail, Menu, X } from 'lucide-react';
 import { Button } from "./ui/button";
+import ThemeToggle from "./ThemeToggle";
 
 const LIQUID_GLASS_CLASSES =
   "backdrop-blur-xl saturate-180 bg-white/5 dark:bg-black/10 border-t border-b border-white/10 shadow-lg shadow-black/20";
@@ -113,104 +114,114 @@ export default function Navbar() {
   }
 
   return (
-    <motion.header
-      className="fixed top-4 left-0 right-0 z-40 flex justify-center px-4"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30, delay: 0.5 }}
-    >
-      <nav
-        className={cn(
-          "flex items-center justify-center rounded-full p-1 md:p-2 w-full max-w-sm md:max-w-md",
-          LIQUID_GLASS_CLASSES
-        )}
+    <>
+      <motion.header
+        className="fixed top-4 left-0 right-0 z-40 flex justify-center px-4"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30, delay: 0.5 }}
       >
-        {/* Mobile Hamburger Menu Button */}
-        <div className="flex justify-between items-center w-full md:hidden px-4">
-            <span className="text-sm font-bold">{activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}</span>
-            <Button size="icon" variant="ghost" onClick={() => setIsMobileMenuOpen(true)}>
-                <Menu className="w-6 h-6"/>
-            </Button>
-        </div>
+        <nav
+          className={cn(
+            "flex items-center justify-center rounded-full p-1 md:p-2 w-full max-w-sm md:max-w-xl",
+            LIQUID_GLASS_CLASSES
+          )}
+        >
+          {/* Mobile Hamburger Menu Button */}
+          <div className="flex justify-between items-center w-full md:hidden px-4">
+              <span className="text-sm font-bold">{activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}</span>
+              <Button size="icon" variant="ghost" onClick={() => setIsMobileMenuOpen(true)}>
+                  <Menu className="w-6 h-6"/>
+              </Button>
+          </div>
 
-        {/* Mobile Menu Panel */}
-        {isMobileMenuOpen && (
-            <motion.div 
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 md:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-                <motion.div 
-                    className="fixed top-0 right-0 h-full w-3/4 max-w-[300px] bg-background/80 backdrop-blur-xl border-l border-white/10 p-8"
-                    initial={{ x: "100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "100%" }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-                    onClick={(e) => e.stopPropagation()}
+          {/* Desktop Navigation */}
+          <ul ref={navRef} className="relative hidden md:flex items-center w-full justify-around">
+            <motion.div
+              className="absolute h-full rounded-full nav-indicator cursor-grab"
+              style={{...indicatorStyle}}
+              animate={{...indicatorStyle}}
+              transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+              drag="x"
+              dragControls={dragControls}
+              dragConstraints={navRef}
+              dragElastic={0.1}
+              onDragEnd={onDragEnd}
+              whileDrag={{ cursor: 'grabbing' }}
+            />
+            {links.map((link) => (
+              <li key={link.href} data-section={link.href.substring(1)} className="flex-1">
+                <Link
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className={cn(
+                    "relative z-10 flex flex-col items-center justify-center text-xs font-medium transition-colors h-14 w-full rounded-full",
+                    activeSection === link.href.substring(1) ? "text-foreground" : "text-foreground/60 hover:text-foreground"
+                  )}
                 >
-                    <Button size="icon" variant="ghost" onClick={() => setIsMobileMenuOpen(false)} className="absolute top-4 right-4">
-                        <X className="w-6 h-6"/>
-                    </Button>
-                    <ul className="flex flex-col items-start space-y-6 mt-16">
-                        {links.map((link) => (
-                            <li key={link.href}>
-                                <a
-                                    href={link.href}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handleMobileLinkClick(link.href)
-                                    }}
-                                    className={cn(
-                                        "flex items-center gap-4 text-xl font-medium transition-colors",
-                                        activeSection === link.href.substring(1) ? "text-foreground" : "text-foreground/60 hover:text-foreground"
-                                    )}
-                                >
-                                    <link.icon className="w-6 h-6"/>
-                                    {link.label}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </motion.div>
-            </motion.div>
-        )}
+                  <link.icon className="w-5 h-5 mb-1"/>
+                  <span className="hidden sm:inline">{link.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </motion.header>
 
-        {/* Desktop Navigation */}
-        <ul ref={navRef} className="relative hidden md:flex items-center w-full justify-around">
-          <motion.div
-            className="absolute h-full rounded-full nav-indicator cursor-grab"
-            style={{...indicatorStyle}}
-            animate={{...indicatorStyle}}
-            transition={{ type: 'spring', stiffness: 500, damping: 40 }}
-            drag="x"
-            dragControls={dragControls}
-            dragConstraints={navRef}
-            dragElastic={0.1}
-            onDragEnd={onDragEnd}
-            whileDrag={{ cursor: 'grabbing' }}
-          />
-          {links.map((link) => (
-            <li key={link.href} data-section={link.href.substring(1)} className="flex-1">
-              <Link
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className={cn(
-                  "relative z-10 flex flex-col items-center justify-center text-xs font-medium transition-colors h-14 w-full rounded-full",
-                  activeSection === link.href.substring(1) ? "text-foreground" : "text-foreground/60 hover:text-foreground"
-                )}
+      {/* Mobile Menu Panel */}
+      {isMobileMenuOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+              <motion.div 
+                  className="fixed top-0 right-0 h-full w-3/4 max-w-[300px] bg-background/80 backdrop-blur-xl border-l border-white/10 p-8"
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+                  onClick={(e) => e.stopPropagation()}
               >
-                <link.icon className="w-5 h-5 mb-1"/>
-                <span className="hidden sm:inline">{link.label}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </motion.header>
+                  <Button size="icon" variant="ghost" onClick={() => setIsMobileMenuOpen(false)} className="absolute top-4 right-4">
+                      <X className="w-6 h-6"/>
+                  </Button>
+                  <ul className="flex flex-col items-start space-y-6 mt-16">
+                      {links.map((link) => (
+                          <li key={link.href}>
+                              <a
+                                  href={link.href}
+                                  onClick={(e) => {
+                                      e.preventDefault();
+                                      handleMobileLinkClick(link.href)
+                                  }}
+                                  className={cn(
+                                      "flex items-center gap-4 text-xl font-medium transition-colors",
+                                      activeSection === link.href.substring(1) ? "text-foreground" : "text-foreground/60 hover:text-foreground"
+                                  )}
+                              >
+                                  <link.icon className="w-6 h-6"/>
+                                  {link.label}
+                              </a>
+                          </li>
+                      ))}
+                  </ul>
+                  <div className="absolute bottom-8 left-8">
+                    <ThemeToggle />
+                  </div>
+              </motion.div>
+          </motion.div>
+      )}
+
+      {/* Desktop Theme Toggle */}
+      <div className="hidden md:block">
+        <ThemeToggle />
+      </div>
+    </>
   );
 }
