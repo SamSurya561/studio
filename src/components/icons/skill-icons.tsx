@@ -14,7 +14,7 @@ const AdobeXDIcon = (props) => (
   </svg>
 );
 
-const PhotoshopIcon = (props) => (
+const AdobePhotoshopIcon = (props) => (
   <svg width="24" height="24" viewBox="0 0 511.76 498.97" xmlns="http://www.w3.org/2000/svg" {...props}>
     <rect width="511.76" height="498.97" rx="90.62" fill="#001e36"/>
     <path fill="#31a8ff" d="M115.24,349.91V130.53c0-1.59.68-2.4,2.06-2.4,3.65,0,7,0,12-.17s10.47-.23,16.31-.34l18.54-.35q9.78-.17,19.39-.17,26.09,0,44,6.52a76.4,76.4,0,0,1,28.66,17.51,67.06,67.06,0,0,1,15.62,24.21A80.31,80.31,0,0,1,276.61,203q0,27.48-12.7,45.32a71.82,71.82,0,0,1-34.33,25.92c-14.42,5.38-30.45,7.2-48.07,7.2-5,0-8.58-.05-10.64-.17s-5.15-.17-9.27-.17v68.49a2.72,2.72,0,0,1-2.32,3.09,2.49,2.49,0,0,1-.77,0H117.64C116,352.65,115.24,351.74,115.24,349.91ZM161.6,169.33v71.55q4.46.35,8.24.34h11.33a80.56,80.56,0,0,0,24.55-3.92A37,37,0,0,0,223.23,226q6.69-7.89,6.69-22a34.74,34.74,0,0,0-5-18.88A32,32,0,0,0,210,172.93,63.68,63.68,0,0,0,185,168.64q-8.25,0-14.59.17t-8.76.52Z"/>
@@ -22,7 +22,7 @@ const PhotoshopIcon = (props) => (
   </svg>
 );
 
-const IllustratorIcon = (props) => (
+const AdobeIllustratorIcon = (props) => (
   <svg width="24" height="24" viewBox="0 0 511.45 498.66" xmlns="http://www.w3.org/2000/svg" {...props}>
     <rect fill="#300" width="511.45" height="498.66" rx="90.57"/>
     <path fill="#ff9a00" d="M247.84,299.26H168.58l-16.12,50.09a4,4,0,0,1-4.12,3.09H108.2q-3.44,0-2.4-3.78L174.42,151q1-3.09,2.06-7a74.51,74.51,0,0,0,1.37-13.9,2.11,2.11,0,0,1,1.8-2.4,2,2,0,0,1,.6,0H234.8c1.6,0,2.51.57,2.75,1.71L315.43,349c.69,2.28,0,3.43-2.06,3.43h-44.6a3.17,3.17,0,0,1-3.43-2.4ZM180.94,256h54.2q-2.05-6.87-4.8-15.44t-5.83-18.36l-6.18-19.55q-3.09-9.78-5.66-18.88T208,167.17h-.34a276.76,276.76,0,0,1-7.21,27.44q-4.8,15.45-9.78,31.57T180.94,256Z"/>
@@ -31,7 +31,7 @@ const IllustratorIcon = (props) => (
 );
 
 
-const InDesignIcon = (props) => (
+const AdobeInDesignIcon = (props) => (
     <svg width="24" height="24" viewBox="0 0 512 512" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M90.666 16h330.666C471.465 16 512 56.533 512 106.666v317.866c0 50.134-40.534 90.667-90.667 90.667H90.666C40.533 515.199 0 474.666 0 424.532V106.666C0 56.533 40.533 16 90.666 16z" fill="#49021f" fill-rule="nonzero"/>
         <g fill="#f36" fill-rule="nonzero">
@@ -73,12 +73,7 @@ const CanvaIcon = (props) => (
 );
 
 const CorelDrawIcon = (props) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-        <rect width="24" height="24" rx="4" fill="#008E44"/>
-        <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" fill="#E6F4EC"/>
-        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#99D6B9"/>
-        <path d="M2 7V17L12 22V12L2 7Z" fill="#4DB280"/>
-    </svg>
+    <svg width="24" height="24" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}><title>CorelDRAW</title><path fill="currentColor" d="M10.651 0C10.265.019 9.4.272 8.584.657c-.816.39-3.696 2.161-3.752 6.536.072 4.145 3.847 11.191 6.397 13.455 0 0-4.141-6.952-4.439-13.013C6.488 1.575 10.651 0 10.651 0Zm2.679 0s4.159 1.575 3.861 7.635c-.299 6.061-4.439 13.013-4.439 13.013 2.547-2.264 6.324-9.31 6.396-13.455-.057-4.375-2.936-6.146-3.752-6.536C14.58.272 13.715.019 13.33 0Zm-1.38.019a1.088 1.088 0 0 0-.555.144C9.864.99 8.909 3.982 9.177 8.66c.185 3.242 1.009 7.291 2.422 11.988h.7c1.413-4.697 2.24-8.742 2.425-11.984.268-4.677-.688-7.674-2.219-8.501a1.088 1.088 0 0 0-.555-.144ZM7.017 1.066S2.543 2.909 3.431 8.225c.884 5.32 5.588 10.995 6.986 12.2.503.457-5.777-6.548-6.386-12.699-.291-2.323.39-4.9 2.986-6.66Zm9.966 0c2.595 1.76 3.276 4.337 2.985 6.66-.608 6.151-6.888 13.156-6.386 12.699 1.398-1.205 6.103-6.88 6.987-12.2.888-5.316-3.586-7.159-3.586-7.159Zm-6.815 20.78L10.647 24h2.599l.488-2.154h-3.566Z"/></svg>
 );
 
 const UserResearchIcon = (props) => (
@@ -127,9 +122,9 @@ const TeamworkIcon = (props) => (
 export const skillIcons: { [key: string]: React.ElementType } = {
   Figma: FigmaIcon,
   "Adobe XD": AdobeXDIcon,
-  "Adobe Photoshop": PhotoshopIcon,
-  "Adobe Illustrator": IllustratorIcon,
-  "Adobe InDesign": InDesignIcon,
+  "Adobe Photoshop": AdobePhotoshopIcon,
+  "Adobe Illustrator": AdobeIllustratorIcon,
+  "Adobe InDesign": AdobeInDesignIcon,
   Canva: CanvaIcon,
   CorelDraw: CorelDrawIcon,
   "User Research": UserResearchIcon,
