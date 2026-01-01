@@ -3,6 +3,7 @@
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
+import Projects from "@/components/sections/Projects";
 import { HeroParallax } from "@/components/ui/hero-parallax";
 import { useCollection, useFirestore } from "@/firebase";
 import { collection, query, orderBy } from "firebase/firestore";
@@ -18,7 +19,7 @@ export default function Home() {
     thumbnail: p.imageUrl
   })) || [];
 
-  if (loading) {
+  if (loading && !products.length) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
         <div className="text-lg">Loading projects...</div>
@@ -28,13 +29,13 @@ export default function Home() {
 
   return (
     <main className="overflow-x-hidden">
-      <HeroParallax products={products}>
-        <div className="relative z-10">
-          <About />
-          <Skills />
-          <Contact />
-        </div>
-      </HeroParallax>
+      <HeroParallax products={products} />
+      <div className="relative z-10">
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </div>
     </main>
   );
 }
