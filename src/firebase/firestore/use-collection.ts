@@ -8,12 +8,12 @@ export function useCollection(query: Query | null) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!query) {
+    if (query === null) {
       setData([]);
       setLoading(false);
       return;
     }
-    
+
     setLoading(true);
 
     const unsubscribe = onSnapshot(

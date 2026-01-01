@@ -5,7 +5,7 @@ import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 import { HeroParallax } from "@/components/ui/hero-parallax";
 import { useCollection, useFirestore } from "@/firebase";
-import { collection, query, orderBy, limit } from "firebase/firestore";
+import { collection, query, orderBy } from "firebase/firestore";
 
 export default function Home() {
   const firestore = useFirestore();
