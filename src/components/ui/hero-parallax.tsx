@@ -4,7 +4,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
   MotionValue,
 } from "framer-motion";
 import Image from "next/image";
@@ -21,7 +20,7 @@ export const HeroParallax = ({
     link: string;
     thumbnail: string;
   }[];
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) => {
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
@@ -32,32 +31,13 @@ export const HeroParallax = ({
     offset: ["start start", "end start"],
   });
 
-  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
-
-  const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 1000]),
-    springConfig
-  );
-  const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -1000]),
-    springConfig
-  );
-  const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
-    springConfig
-  );
-  const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
-    springConfig
-  );
-  const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
-    springConfig
-  );
-  const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-700, 200]),
-    springConfig
-  );
+  const translateX = useTransform(scrollYProgress, [0, 1], [0, 1000]);
+  const translateXReverse = useTransform(scrollYProgress, [0, 1], [0, -1000]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.2], [15, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0.2, 1]);
+  const rotateZ = useTransform(scrollYProgress, [0, 0.2], [20, 0]);
+  const translateY = useTransform(scrollYProgress, [0, 0.2], [-700, 200]);
+  
   return (
     <div
       ref={ref}
