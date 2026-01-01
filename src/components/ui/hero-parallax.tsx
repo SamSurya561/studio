@@ -52,7 +52,7 @@ export const HeroParallax = ({
           translateY,
           opacity,
         }}
-        className=""
+        className="absolute top-0 left-0 w-full h-full z-0"
       >
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
           {firstRow.map((product, i) => (
@@ -89,7 +89,7 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
+    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0 z-10">
       <h1 className="text-4xl md:text-8xl font-black tracking-tighter text-center">
         Sharmila S
       </h1>
@@ -134,22 +134,21 @@ export const ProductCard = ({
       key={product.title}
       className="group/product h-96 w-[30rem] relative flex-shrink-0"
     >
-      <Link
-        href={product.link}
-        className="block group-hover/product:shadow-2xl "
-      >
-        <Image
-          src={product.thumbnail}
-          height="600"
-          width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0"
-          alt={product.title}
-        />
-      </Link>
-      <div className="absolute inset-0 h-full w-full opacity-0 bg-black pointer-events-none group-hover/product:opacity-80"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-        {product.title}
-      </h2>
+        <div
+            className="block group-hover/product:shadow-2xl "
+        >
+            <Image
+                src={product.thumbnail}
+                height="600"
+                width="600"
+                className="object-cover object-left-top absolute h-full w-full inset-0"
+                alt={product.title}
+            />
+        </div>
+        <div className="absolute inset-0 h-full w-full opacity-0 bg-black pointer-events-none group-hover/product:opacity-80"></div>
+        <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+            {product.title}
+        </h2>
     </motion.div>
   );
 };
