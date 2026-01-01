@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import Preloader from '@/components/Preloader';
+import LenisProvider from '@/components/providers/lenis-provider';
 
 export default function RootLayoutClient({
   children,
@@ -31,24 +32,26 @@ export default function RootLayoutClient({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        {isLoading ? (
-          <Preloader />
-        ) : (
-          <FirebaseClientProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <GridBackground />
-              <Navbar />
-              {children}
-              <Footer />
-              <Toaster />
-            </ThemeProvider>
-          </FirebaseClientProvider>
-        )}
+        <LenisProvider>
+          {isLoading ? (
+            <Preloader />
+          ) : (
+            <FirebaseClientProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="dark"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <GridBackground />
+                <Navbar />
+                {children}
+                <Footer />
+                <Toaster />
+              </ThemeProvider>
+            </FirebaseClientProvider>
+          )}
+        </LenisProvider>
       </body>
     </html>
   );
